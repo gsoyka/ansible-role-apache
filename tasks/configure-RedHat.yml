@@ -22,3 +22,8 @@
     mode: 0644
   notify: restart apache
   when: apache_create_vhosts
+
+- name: Disable apache welcome page
+  shell: |
+    sed -i.bak 's/^\([^#]\)/#\1/g' /etc/httpd/conf.d/welcome.conf
+  when: apache_disable_welcome  
